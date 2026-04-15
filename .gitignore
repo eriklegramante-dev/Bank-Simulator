@@ -1,0 +1,25 @@
+# --- Python ---
+# Esconde a pasta do ambiente virtual (essencial)
+venv/
+.venv/
+env/
+bin/
+lib/
+
+# Esconde arquivos de cache do Python (__pycache__)
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Streamlit ---
+# Esconde as configurações locais do Streamlit
+.streamlit/config.toml
+.streamlit/secrets.toml
+
+# --- IDEs (VS Code / PyCharm) ---
+.vscode/
+.idea/
+
+# --- Logs e Dados Temporários ---
+*.log
+.DS_Store

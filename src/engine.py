@@ -1,3 +1,5 @@
+import logging
+
 class ATM:
     def __init__(self):
         self.cards = ["1234 5678 9012 3432", "9876 5432 5743 3523", "1111 2222 3333 4444", "5555 6666 7777 8888"]
@@ -9,6 +11,9 @@ class ATM:
             "5555 6666 7777 8888" : {"balance": 1500.0, "password": "4321"}
         }
 
+        self.failed_attempts = {}
+        self.blocked_list = []
+
     def available_cards(self):
         list_formatted = []
         for card in self.cards:
@@ -17,30 +22,28 @@ class ATM:
 
         return list_formatted
 
-    def blocked_cards(self): 
-        blocked_cards_list = []
-        return blocked_cards_list
 
+    def authentication_acc(self, card_number, password):
+        if card_number in self.blocked_list:
+            logging.error("Tentativa de acesso com cartão BLOQUEADO: {card_number}")
+            return "BLOQUEADO"
 
-    def authentication_acc(self):
-        attempts_blocking = 3
-
-        while True:
-            card_number = input("Digite o número do cartão:")
-            password = input("Digite a senha:")
-
-            if card_number in self.cards and self.accounts[card_number]['password'] == password:
-                print("Autenticação bem-sucedida!")
+        if card_number in self.accounts:
+            if self.accounts[card_number]['password'] == password:
+                self.failed_attempts[card_number] = 0
                 return card_number
             
-            elif card_number in self.blocked_cards():
-                print("Número do cartão ou senha incorretos.")
-                attempts_blocking -= 1
-                if attempts_blocking == 0:
-                    print("Número do cartão bloqueado. Tente novamente mais tarde.")
-                    return None
-                continue
-
             else:
-                print("Informações incorretas. Tente novamente.")
-                continue
+                count = self.failed_attempts.get(card_number, 0) + 1
+                self.failed_attempts[card_number] = count
+            
+                logging.warning(f"Falha de autenticação para {card_number}. Tentativa {count}/3.")
+
+                if count >= 3:
+                    self.blocked_list.append(card_number)
+                    logging.info(f"🛑 Cartão {card_number} foi BLOQUEADO por excesso de tentativas.")
+                    return "BLOQUEADO"
+                
+                return None
+            
+        return None

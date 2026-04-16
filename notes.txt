@@ -1,0 +1,2 @@
+Adicionando funcionalidades de saques. transferencias e deposito.
+Saque ainda não está funcional, foi apenass adicionado a parte "cru".

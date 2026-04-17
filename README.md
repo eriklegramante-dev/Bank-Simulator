@@ -30,6 +30,7 @@ A professional ATM (Automated Teller Machine) simulator built with **Python** an
 ├── .gitignore        # Git configuration to ignore venv and logs
 └── README.md         # Project documentation
 
+```
 ## ⚙️ How to Run Locally
 
 1. **Clone the repository**:

@@ -60,7 +60,7 @@ if not st.session_state.authenticated:
                         logging.warning("Falha de autenticação.")
 
     st.write("Dica: Use os cartões disponíveis para simular o acesso. Após 3 tentativas falhas, o cartão será bloqueado.")
-    st.write("Exemplo de cartão: '1234 5678 9012 3432' com senha '1234'.")
+    st.write("Exemplo de cartão: '1234 5678 9012 3432' com senha '1234'.    ")
     st.write("Além do cartão que usará para realizar o acesso, salve outro cartão para testar a funcionalidade de transferência.")
 
 else:

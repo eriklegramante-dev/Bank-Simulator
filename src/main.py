@@ -7,7 +7,6 @@ from engine import ATM
 
 log_dir = "logs"
 log_file = os.path.join(log_dir, "atm.log")
-#logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler(log_file), logging.StreamHandler()])
 
 st.set_page_config(page_title="Caixa Eletrônico", layout="centered")
 
